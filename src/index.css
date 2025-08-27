@@ -2,95 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* SafeZone Design System - Emergency Response App 
+All colors MUST be HSL for proper theming.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core App Colors */
+    --background: 248 250 252; /* #F8FAFC */
+    --foreground: 215 25% 27%; /* #374151 */
 
+    /* Safety Status Colors */
+    --safe: 142 71% 45%; /* #28A745 - Green for safe */
+    --safe-foreground: 0 0% 100%; /* White text on safe */
+    --safe-light: 142 71% 95%; /* Light safe background */
+    
+    --danger: 354 70% 54%; /* #DC3545 - Red for danger */
+    --danger-foreground: 0 0% 100%; /* White text on danger */
+    --danger-light: 354 70% 95%; /* Light danger background */
+
+    /* Disaster Type Colors */
+    --fire: 14 100% 57%; /* #FF4500 - Orange for fire */
+    --earthquake: 45 93% 47%; /* #D97706 - Amber for earthquake */
+    --flood: 213 94% 68%; /* #3B82F6 - Blue for flood */
+    --landslide: 27 100% 50%; /* #B45309 - Brown for landslide */
+
+    /* UI Element Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
+    --card-border: 215 20% 91%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142 71% 45%; /* Safe green as primary */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 20% 91%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 20% 91%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 213 94% 68%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 354 70% 54%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 20% 91%;
+    --input: 215 20% 91%;
+    --ring: 142 71% 45%;
 
-    --radius: 0.5rem;
+    --radius: 1rem; /* Rounded corners for mobile */
 
-    --sidebar-background: 0 0% 98%;
+    /* Alert States */
+    --alert-normal: 142 71% 45%;
+    --alert-warning: 45 93% 47%;
+    --alert-critical: 354 70% 54%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-safe: linear-gradient(135deg, hsl(142 71% 45%), hsl(142 71% 55%));
+    --gradient-danger: linear-gradient(135deg, hsl(354 70% 54%), hsl(354 70% 64%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 71% 45%), hsl(213 94% 68%));
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Shadows */
+    --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Animation Timing */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark theme for night mode */
+    --background: 215 28% 17%; /* Dark gray background */
+    --foreground: 215 20% 91%; /* Light gray text */
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Safety colors remain visible in dark mode */
+    --safe: 142 71% 45%;
+    --safe-foreground: 0 0% 100%;
+    --safe-light: 142 71% 15%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --danger: 354 70% 54%;
+    --danger-foreground: 0 0% 100%;
+    --danger-light: 354 70% 15%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Disaster colors adjusted for dark mode */
+    --fire: 14 100% 67%;
+    --earthquake: 45 93% 57%;
+    --flood: 213 94% 78%;
+    --landslide: 27 100% 60%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --card: 215 28% 25%;
+    --card-foreground: 215 20% 91%;
+    --card-border: 215 28% 35%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --popover: 215 28% 25%;
+    --popover-foreground: 215 20% 91%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --secondary: 215 28% 35%;
+    --secondary-foreground: 215 20% 91%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --muted: 215 28% 35%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 213 94% 78%;
+    --accent-foreground: 215 28% 17%;
+
+    --destructive: 354 70% 54%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 28% 35%;
+    --input: 215 28% 35%;
+    --ring: 142 71% 45%;
+
+    /* Dark mode gradients */
+    --gradient-safe: linear-gradient(135deg, hsl(142 71% 35%), hsl(142 71% 45%));
+    --gradient-danger: linear-gradient(135deg, hsl(354 70% 44%), hsl(354 70% 54%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 71% 35%), hsl(213 94% 58%));
   }
 }
 
@@ -100,6 +136,80 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Mobile-first responsive sizing */
+  html {
+    @apply text-base;
+  }
+}
+
+@layer components {
+  /* Mobile app container */
+  .mobile-container {
+    @apply max-w-sm mx-auto min-h-screen bg-background relative overflow-hidden;
+  }
+
+  /* Safety button states */
+  .safety-button {
+    @apply w-48 h-48 rounded-full flex items-center justify-center text-2xl font-bold shadow-large transition-all duration-300 transform;
+  }
+  
+  .safety-button-normal {
+    @apply bg-safe text-safe-foreground hover:scale-105 active:scale-95;
+    background: var(--gradient-safe);
+  }
+  
+  .safety-button-alert {
+    @apply bg-danger text-danger-foreground animate-pulse;
+    background: var(--gradient-danger);
+  }
+  
+  .safety-button-sharing {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Disaster type indicators */
+  .disaster-fire {
+    @apply bg-[hsl(var(--fire))] text-white;
+  }
+  
+  .disaster-earthquake {
+    @apply bg-[hsl(var(--earthquake))] text-white;
+  }
+  
+  .disaster-flood {
+    @apply bg-[hsl(var(--flood))] text-white;
+  }
+  
+  .disaster-landslide {
+    @apply bg-[hsl(var(--landslide))] text-white;
+  }
+
+  /* Alert banners */
+  .alert-banner {
+    @apply px-4 py-3 rounded-lg text-center font-medium shadow-medium;
+  }
+  
+  .alert-banner-danger {
+    @apply bg-[hsl(var(--danger-light))] text-[hsl(var(--danger))] border border-[hsl(var(--danger))];
+  }
+  
+  .alert-banner-warning {
+    @apply bg-[hsl(var(--earthquake)_/_0.1)] text-[hsl(var(--earthquake))] border border-[hsl(var(--earthquake))];
+  }
+
+  /* Navigation tabs */
+  .nav-tab {
+    @apply flex-1 py-3 px-2 text-center text-sm font-medium rounded-lg transition-colors duration-200;
+  }
+  
+  .nav-tab-active {
+    @apply bg-primary text-primary-foreground shadow-soft;
+  }
+  
+  .nav-tab-inactive {
+    @apply text-muted-foreground hover:text-foreground hover:bg-muted;
   }
 }

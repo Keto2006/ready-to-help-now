@@ -1,0 +1,99 @@
+{
+  "disasters": [
+    {
+      "id": "1",
+      "type": "fire",
+      "title": "Forest Fire near Dilijan",
+      "location": "Tavush Region",
+      "coordinates": [40.7408, 44.8607],
+      "severity": "high",
+      "date": "2024-01-27T10:30:00Z",
+      "distance": 15.2,
+      "affected": 120,
+      "description": "Large forest fire detected in the mountains near Dilijan National Park. Strong winds are spreading the fire rapidly.",
+      "safetyInstructions": [
+        "Cover your mouth with cloth",
+        "Avoid smoke, move towards the nearest safe exit",
+        "Do not use elevators during evacuation",
+        "Follow local emergency services instructions"
+      ]
+    },
+    {
+      "id": "2", 
+      "type": "earthquake",
+      "title": "Magnitude 4.2 Earthquake",
+      "location": "Ararat Region",
+      "coordinates": [40.1596, 44.5096],
+      "severity": "medium",
+      "date": "2024-01-27T08:15:00Z",
+      "distance": 8.7,
+      "affected": 340,
+      "description": "Moderate earthquake registered near Ararat. Some buildings reported minor damage.",
+      "safetyInstructions": [
+        "Do not use elevators",
+        "Hide under a sturdy table or go to an open area",
+        "Stay away from windows and heavy objects",
+        "If outdoors, stay away from buildings"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "flood",
+      "title": "Flash Flood Warning", 
+      "location": "Lori Region",
+      "coordinates": [41.0982, 44.4823],
+      "severity": "high",
+      "date": "2024-01-27T06:00:00Z",
+      "distance": 25.1,
+      "affected": 75,
+      "description": "Heavy rainfall has caused flash flooding in several villages. Water levels rising rapidly.",
+      "safetyInstructions": [
+        "Move to higher ground immediately",
+        "Avoid walking through moving water",
+        "Do not drive through flooded roads",
+        "Stay indoors until water recedes"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "landslide",
+      "title": "Landslide Risk Alert",
+      "location": "Syunik Region", 
+      "coordinates": [39.5070, 46.3599],
+      "severity": "medium",
+      "date": "2024-01-27T05:45:00Z",
+      "distance": 45.3,
+      "affected": 28,
+      "description": "Unstable slopes detected after recent heavy rains. Road closures in effect.",
+      "safetyInstructions": [
+        "Move away from slopes and hillsides",
+        "Seek shelter in safe, stable areas",
+        "Avoid valleys and low-lying areas",
+        "Listen for unusual sounds from slopes"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "fire",
+      "title": "Industrial Fire",
+      "location": "Yerevan",
+      "coordinates": [40.1776, 44.5126], 
+      "severity": "low",
+      "date": "2024-01-26T22:30:00Z",
+      "distance": 3.2,
+      "affected": 15,
+      "description": "Small industrial fire contained by emergency services. Smoke visible in surrounding area.",
+      "safetyInstructions": [
+        "Avoid the immediate area",
+        "Keep windows closed if smoke is visible", 
+        "Follow evacuation routes if instructed",
+        "Do not approach the site"
+      ]
+    }
+  ],
+  "userLocation": {
+    "latitude": 40.1792,
+    "longitude": 44.4991,
+    "region": "Yerevan"
+  }
+}
