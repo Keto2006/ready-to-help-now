@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Plus, Smartphone, Watch, Heart, Activity, Droplets, Battery, BatteryLow, Trash2 } from 'lucide-react';
+import { ArrowLeft, Plus, Smartphone, Watch, User, AlertTriangle, Battery, BatteryLow, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,10 +11,10 @@ interface Device {
   type: 'smartwatch' | 'fitness_tracker' | 'phone';
   serialNumber: string;
   batteryLevel: number;
-  healthData: {
-    heartRate?: number;
-    steps?: number;
-    oxygenLevel?: number;
+  medicalData: {
+    bloodType?: string;
+    heartIssues?: string[];
+    allergies?: string[];
   };
   lastSync: string;
 }
@@ -26,10 +26,10 @@ const mockDevices: Device[] = [
     type: 'smartwatch',
     serialNumber: 'AW-2023-789456',
     batteryLevel: 78,
-    healthData: {
-      heartRate: 72,
-      steps: 8453,
-      oxygenLevel: 98
+    medicalData: {
+      bloodType: 'A+',
+      heartIssues: ['High blood pressure'],
+      allergies: ['Penicillin', 'Nuts']
     },
     lastSync: '2 minutes ago'
   },
@@ -39,9 +39,10 @@ const mockDevices: Device[] = [
     type: 'fitness_tracker',
     serialNumber: 'FB-CH5-123789',
     batteryLevel: 34,
-    healthData: {
-      heartRate: 68,
-      steps: 12847
+    medicalData: {
+      bloodType: 'O-',
+      heartIssues: [],
+      allergies: ['Shellfish']
     },
     lastSync: '1 hour ago'
   },
@@ -51,8 +52,10 @@ const mockDevices: Device[] = [
     type: 'phone',
     serialNumber: 'IP15-PRO-456123',
     batteryLevel: 92,
-    healthData: {
-      steps: 7834
+    medicalData: {
+      bloodType: 'B+',
+      heartIssues: ['Arrhythmia'],
+      allergies: []
     },
     lastSync: 'Just now'
   }
@@ -67,11 +70,11 @@ const Devices = () => {
       case 'smartwatch':
         return <Watch className="h-5 w-5" />;
       case 'fitness_tracker':
-        return <Activity className="h-5 w-5" />;
+        return <User className="h-5 w-5" />;
       case 'phone':
         return <Smartphone className="h-5 w-5" />;
       default:
-        return <Activity className="h-5 w-5" />;
+        return <User className="h-5 w-5" />;
     }
   };
 
@@ -172,43 +175,59 @@ const Devices = () => {
                   </div>
                 </div>
 
-                {/* Health Data */}
+                {/* Medical Data */}
                 <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-foreground">Health Data</h4>
+                  <h4 className="text-sm font-semibold text-foreground">Medical Information</h4>
                   <div className="grid grid-cols-1 gap-2">
-                    {device.healthData.heartRate && (
+                    {device.medicalData.bloodType && (
                       <div className="flex items-center justify-between p-2 bg-accent/20 rounded">
                         <div className="flex items-center space-x-2">
-                          <Heart className="h-4 w-4 text-red-500" />
-                          <span className="text-sm">Heart Rate</span>
+                          <User className="h-4 w-4 text-red-500" />
+                          <span className="text-sm">Blood Type</span>
                         </div>
                         <span className="text-sm font-medium">
-                          {device.healthData.heartRate} BPM
+                          {device.medicalData.bloodType}
                         </span>
                       </div>
                     )}
                     
-                    {device.healthData.steps && (
-                      <div className="flex items-center justify-between p-2 bg-accent/20 rounded">
-                        <div className="flex items-center space-x-2">
-                          <Activity className="h-4 w-4 text-blue-500" />
-                          <span className="text-sm">Steps</span>
+                    {device.medicalData.heartIssues && device.medicalData.heartIssues.length > 0 && (
+                      <div className="p-2 bg-accent/20 rounded">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <AlertTriangle className="h-4 w-4 text-orange-500" />
+                          <span className="text-sm font-medium">Heart Issues</span>
                         </div>
-                        <span className="text-sm font-medium">
-                          {device.healthData.steps.toLocaleString()}
-                        </span>
+                        <div className="ml-6">
+                          {device.medicalData.heartIssues.map((issue, index) => (
+                            <span key={index} className="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mr-1 mb-1">
+                              {issue}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
                     
-                    {device.healthData.oxygenLevel && (
-                      <div className="flex items-center justify-between p-2 bg-accent/20 rounded">
-                        <div className="flex items-center space-x-2">
-                          <Droplets className="h-4 w-4 text-cyan-500" />
-                          <span className="text-sm">Blood Oxygen</span>
+                    {device.medicalData.allergies && device.medicalData.allergies.length > 0 && (
+                      <div className="p-2 bg-accent/20 rounded">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <AlertTriangle className="h-4 w-4 text-red-500" />
+                          <span className="text-sm font-medium">Allergies</span>
                         </div>
-                        <span className="text-sm font-medium">
-                          {device.healthData.oxygenLevel}%
-                        </span>
+                        <div className="ml-6">
+                          {device.medicalData.allergies.map((allergy, index) => (
+                            <span key={index} className="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full mr-1 mb-1">
+                              {allergy}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {(!device.medicalData.bloodType && 
+                      (!device.medicalData.heartIssues || device.medicalData.heartIssues.length === 0) && 
+                      (!device.medicalData.allergies || device.medicalData.allergies.length === 0)) && (
+                      <div className="p-2 bg-muted/20 rounded text-center">
+                        <span className="text-sm text-muted-foreground">No medical data available</span>
                       </div>
                     )}
                   </div>
@@ -227,7 +246,7 @@ const Devices = () => {
               No Devices Connected
             </h3>
             <p className="text-muted-foreground mb-4">
-              Connect your first device to start monitoring your health data.
+              Connect your first device to start monitoring your medical information.
             </p>
             <Button>
               <Plus className="h-4 w-4 mr-2" />
