@@ -1,4 +1,4 @@
-import { Home, MapPin, Settings } from "lucide-react";
+import { Home, MapPin, Smartphone, Settings } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +30,19 @@ const Navigation = () => {
         >
           <MapPin className="h-5 w-5 mx-auto mb-1" />
           <span className="text-xs">Events</span>
+        </NavLink>
+
+        <NavLink
+          to="/devices"
+          className={({ isActive }) =>
+            cn(
+              "nav-tab",
+              isActive ? "nav-tab-active" : "nav-tab-inactive"
+            )
+          }
+        >
+          <Smartphone className="h-5 w-5 mx-auto mb-1" />
+          <span className="text-xs">Devices</span>
         </NavLink>
 
         <NavLink
