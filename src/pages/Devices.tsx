@@ -113,7 +113,10 @@ const Devices = () => {
         {/* Add Device Button */}
         <Button 
           className="w-full"
-          onClick={() => {/* Add device logic */}}
+          onClick={() => {
+            // Add device logic - could show a modal or navigate to add device page
+            console.log('Add device clicked');
+          }}
         >
           <Plus className="h-4 w-4 mr-2" />
           Add New Device
